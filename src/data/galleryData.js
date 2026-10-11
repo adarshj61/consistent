@@ -1,0 +1,20 @@
+export const galleryData = [
+  { src: "/assets/gallery/v1.png", title: "Interactive Workshop Session", category: "Classroom" },
+  { src: "/assets/gallery/v2.png", title: "Public Speaking & Elocution", category: "Speaking" },
+  { src: "/assets/gallery/v3.png", title: "Corporate Etiquette Masterclass", category: "Corporate" },
+  { src: "/assets/gallery/v4.png", title: "Young Learners Speech Circle", category: "Kids" },
+  { src: "/assets/gallery/v5.png", title: "IELTS Intensive Seminar", category: "Test Prep" },
+  { src: "/assets/gallery/v6.png", title: "Student Mock Interview Session", category: "Interviews" },
+  { src: "/assets/gallery/v7.jpeg", title: "College Guest Lecture & Seminar", category: "Institutional" },
+  { src: "/assets/gallery/v8.jpeg", title: "Faculty Presentation", category: "Classroom" },
+  { src: "/assets/gallery/v9.jpeg", title: "Group Discussion Practice", category: "Speaking" },
+  { src: "/assets/gallery/v10.jpeg", title: "Active Classroom Engagement", category: "Classroom" },
+  { src: "/assets/gallery/v11.jpeg", title: "Soft Skills & Etiquette Training", category: "Corporate" },
+  { src: "/assets/gallery/v12.jpeg", title: "Certificate Distribution & Celebration", category: "Student Success" },
+  { src: "/assets/gallery/v14.jpeg", title: "One-on-One Speaking Evaluation", category: "Test Prep" },
+  { src: "/assets/gallery/v15.jpeg", title: "Executive Presence Workshop", category: "Corporate" },
+  { src: "/assets/gallery/v16.jpeg", title: "Auditorium Address & Motivation", category: "Institutional" },
+  { src: "/assets/gallery/v18.jpeg", title: "Kids Reading Club Discussion", category: "Kids" },
+  { src: "/assets/gallery/v20.jpeg", title: "Institutional Collaboration Seminar", category: "Institutional" },
+  { src: "/assets/gallery/v22.jpeg", title: "Classroom Team Activity", category: "Classroom" }
+];
