@@ -95,7 +95,7 @@ export default function HomePage({ onOpenEnquiry }) {
         {/* Full-width authentic academy photograph background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/assets/gallery/v5.png"
+            src="/assets/gallery/v15.jpeg"
             alt="The Consistent Academy Auditorium and Masterclass"
             className="w-full h-full object-cover object-center lg:object-right filter brightness-[0.80]"
             width="4032"

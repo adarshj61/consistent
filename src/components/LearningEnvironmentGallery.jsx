@@ -14,7 +14,7 @@ export default function LearningEnvironmentGallery() {
       category: 'Lectures',
       badge: 'Campus Lecture',
       description: 'Orientation and motivational addresses conducted at the Pune center.',
-      span: 'sm:col-span-2 lg:col-span-7 lg:row-span-2 aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:h-full min-h-[280px] lg:min-h-0',
+      span: 'sm:col-span-2 lg:col-span-7 lg:row-span-2 aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:h-full min-h-0',
       width: 4032,
       height: 3024
     },
@@ -25,7 +25,7 @@ export default function LearningEnvironmentGallery() {
       category: 'Workshops',
       badge: 'Guided Practice',
       description: 'Syntax clarification, grammar drills, and active classroom dialogue.',
-      span: 'sm:col-span-1 lg:col-span-5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]',
+      span: 'sm:col-span-1 lg:col-span-5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] min-h-0',
       width: 800,
       height: 600
     },
@@ -36,7 +36,7 @@ export default function LearningEnvironmentGallery() {
       category: 'Collaborative',
       badge: 'Collaborative Drill',
       description: 'Peer debates applying the PEEL argument framework under faculty moderation.',
-      span: 'sm:col-span-1 lg:col-span-5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]',
+      span: 'sm:col-span-1 lg:col-span-5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] min-h-0',
       width: 800,
       height: 600
     },
@@ -47,7 +47,7 @@ export default function LearningEnvironmentGallery() {
       category: 'Workshops',
       badge: 'Reading Circle',
       description: 'Weekly book reading circles cultivating daily vocabulary and comprehension habits.',
-      span: 'sm:col-span-1 lg:col-span-6 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]',
+      span: 'sm:col-span-1 lg:col-span-6 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] min-h-0',
       width: 800,
       height: 600
     },
@@ -58,7 +58,7 @@ export default function LearningEnvironmentGallery() {
       category: 'Collaborative',
       badge: 'Podium Speaking',
       description: 'Podium speaking practice to eliminate hesitation and internal translation lag.',
-      span: 'sm:col-span-1 lg:col-span-6 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]',
+      span: 'sm:col-span-1 lg:col-span-6 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] min-h-0',
       width: 800,
       height: 600
     }
@@ -93,10 +93,10 @@ export default function LearningEnvironmentGallery() {
   return (
     <section
       ref={sectionRef}
-      className="py-14 sm:py-20 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors overflow-hidden"
+      className="py-14 sm:py-20 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors w-full"
       aria-labelledby="learning-environment-heading"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header with Perspective Filter Pills */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-5">
@@ -116,13 +116,13 @@ export default function LearningEnvironmentGallery() {
           </div>
 
           {/* Perspective Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2 self-start md:self-end">
+          <div className="flex flex-wrap items-center gap-2 self-start md:self-end w-full md:w-auto max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 cursor-pointer max-w-full text-center break-words ${
                   activeCategory === cat
                     ? 'bg-teal-700 dark:bg-teal-600 text-white shadow-sm'
                     : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
@@ -136,7 +136,7 @@ export default function LearningEnvironmentGallery() {
         </div>
 
         {/* Staggered Cinematic Asymmetrical Composition */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 w-full min-w-0 max-w-full">
           {filteredItems.map((item, index) => {
             // Calculated sequential stagger delay
             const staggerDelayMs = isVisible ? index * 120 : 0;
@@ -144,9 +144,9 @@ export default function LearningEnvironmentGallery() {
             // Individual column layout depending on count
             let colSpanClass = item.span;
             if (filteredItems.length === 1) {
-              colSpanClass = 'sm:col-span-2 lg:col-span-12 aspect-[21/9] sm:aspect-[16/8]';
+              colSpanClass = 'sm:col-span-2 lg:col-span-12 aspect-[16/10] sm:aspect-[16/8] lg:aspect-[21/9] min-h-0';
             } else if (filteredItems.length === 2) {
-              colSpanClass = 'sm:col-span-1 lg:col-span-6 aspect-[16/10]';
+              colSpanClass = 'sm:col-span-1 lg:col-span-6 aspect-[16/10] min-h-0';
             }
 
             return (
@@ -155,7 +155,7 @@ export default function LearningEnvironmentGallery() {
                 style={{
                   transitionDelay: `${staggerDelayMs}ms`,
                 }}
-                className={`group relative rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 shadow-sm hover:shadow-lg transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${
+                className={`group relative rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 shadow-sm hover:shadow-lg transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 w-full min-w-0 max-w-full ${
                   isVisible
                     ? 'opacity-100 translate-y-0 scale-100'
                     : 'opacity-0 translate-y-6 scale-[0.96]'
@@ -165,7 +165,7 @@ export default function LearningEnvironmentGallery() {
                 <img
                   src={item.src}
                   alt={item.title}
-                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transform-none"
+                  className="w-full h-full max-w-full object-cover object-center block transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transform-none"
                   loading="lazy"
                   width={item.width}
                   height={item.height}
@@ -173,23 +173,23 @@ export default function LearningEnvironmentGallery() {
 
                 {/* Subtle Cinematic Vignette Overlay */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent transition-opacity duration-300"
+                  className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent transition-opacity duration-300 pointer-events-none"
                   aria-hidden="true"
                 />
 
                 {/* Editorial Caption Bar */}
-                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 flex flex-col justify-end pointer-events-none z-10 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/20 dark:bg-white/15 backdrop-blur-md text-white border border-white/20">
+                <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-5 flex flex-col justify-end pointer-events-none z-10 space-y-1 w-full max-w-full min-w-0">
+                  <div className="flex items-center gap-2 max-w-full min-w-0">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/20 dark:bg-white/15 backdrop-blur-md text-white border border-white/20 inline-block max-w-full truncate">
                       {item.badge}
                     </span>
                   </div>
 
-                  <figcaption className="font-heading font-bold text-sm sm:text-base text-white leading-snug drop-shadow-sm">
+                  <figcaption className="font-heading font-bold text-sm sm:text-base text-white leading-snug drop-shadow-sm break-words line-clamp-2">
                     {item.title}
                   </figcaption>
 
-                  <p className="text-[11px] text-slate-200/90 leading-relaxed line-clamp-1 group-hover:line-clamp-2 transition-all duration-200">
+                  <p className="text-[11px] text-slate-200/90 leading-relaxed line-clamp-1 group-hover:line-clamp-2 transition-all duration-200 break-words">
                     {item.description}
                   </p>
                 </div>
