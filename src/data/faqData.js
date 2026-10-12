@@ -25,6 +25,6 @@ export const faqData = [
   },
   {
     question: "Where is The Consistent Academy located and how can I get in touch?",
-    answer: "The Consistent Academy is headquartered in Pune, Maharashtra. You can reach out directly via telephone or WhatsApp at +91 77091 09830, or email the admissions desk at theconsistentacademy@gmail.com."
+    answer: "The Consistent Academy is headquartered in Pune, Maharashtra. You can reach out directly via our online enquiry form, or email the admissions desk at theconsistentacademy@gmail.com."
   }
 ];

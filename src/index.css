@@ -16,15 +16,34 @@
     --border-subtle: #E2E8F0;
   }
 
+  .dark {
+    --brand-primary: #8B5CF6;
+    --brand-primary-hover: #7C3AED;
+    --brand-accent: #A78BFA;
+    --brand-teal: #14B8A6;
+    --surface-bg: #0B0F19;
+    --surface-card: #131B2E;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --border-subtle: #1E293B;
+  }
+
   body {
     background-color: var(--surface-bg);
     color: var(--text-primary);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Outfit', 'Inter', sans-serif;
     color: var(--text-primary);
     letter-spacing: -0.02em;
@@ -61,6 +80,7 @@
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   ::before,
   ::after {

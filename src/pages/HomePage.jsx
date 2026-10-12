@@ -1,34 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Award,
+  ArrowRight,
   BookOpen,
   CheckCircle2,
   Clock,
-  ArrowRight,
-  Star,
-  Users,
   Compass,
   GraduationCap,
-  Sparkles,
-  PhoneCall,
-  MapPin,
-  ExternalLink
+  Award,
+  ChevronRight,
+  ShieldCheck,
+  FileText
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import CourseCard from '../components/CourseCard';
 import FAQAccordion from '../components/FAQAccordion';
-import { coursesData, kidsCoursesData } from '../data/coursesData';
+import LearningEnvironmentGallery from '../components/LearningEnvironmentGallery';
 import { founderData } from '../data/founderData';
-import { testimonialsData } from '../data/testimonialsData';
 import { faqData } from '../data/faqData';
 import { galleryData } from '../data/galleryData';
 
 export default function HomePage({ onOpenEnquiry }) {
-  // Select top featured courses for home preview
-  const featuredCourses = coursesData.slice(0, 4);
-  const featuredKidsCourse = kidsCoursesData[0];
-
   const educationalOrgSchema = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -36,7 +27,6 @@ export default function HomePage({ onOpenEnquiry }) {
     "url": "https://www.theconsistentacademy.in/",
     "logo": "https://www.theconsistentacademy.in/assets/logo2.png",
     "description": "Premier English language proficiency and IELTS preparation institute in Pune, Maharashtra. Founded by Vidya Wankhade.",
-    "telephone": "+91 77091 09830",
     "email": "theconsistentacademy@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -55,6 +45,42 @@ export default function HomePage({ onOpenEnquiry }) {
     ]
   };
 
+  // Curated core course highlights (4 primary offerings)
+  const coreCourses = [
+    {
+      title: "International Test Preparation",
+      subtitle: "IELTS • TOEFL • PTE Academic • CELPIP",
+      description: "Targeted training for study abroad and global migration. Individual diagnostic level assessment, Cambridge materials, and line-by-line writing and speaking evaluation.",
+      duration: "4 to 8 Weeks",
+      slug: "ielts-toefl-pte-celpip",
+      tag: "Test Prep"
+    },
+    {
+      title: "Professional Spoken English & Fluency",
+      subtitle: "Speaking Confidence • Accent Neutrality",
+      description: "Overcome hesitation and internal translation lag. Practice natural conversational sentence structures, pronunciation clarity, and impromptu speaking.",
+      duration: "4 to 12 Weeks",
+      slug: "spoken-english-fluency",
+      tag: "Spoken English"
+    },
+    {
+      title: "Corporate Survival & Interview Coaching",
+      subtitle: "Executive Presence • Group Discussions",
+      description: "Master workplace communication, the PEEL argument framework for GDs, behavioral interviews using the STAR method, and executive presence.",
+      duration: "2 to 6 Weeks",
+      slug: "corporate-survival-success",
+      tag: "Career & Leadership"
+    },
+    {
+      title: "Young Learners & Reading Foundations",
+      subtitle: "Phonics • Comprehension • Elocution",
+      description: "Developmental language programs cultivating phonetic clarity, expressive public speaking, and active daily reading comprehension habits.",
+      duration: "4 to 8 Weeks",
+      slug: "kids-reading-club",
+      tag: "Young Learners"
+    }
+  ];
+
   return (
     <>
       <SEOHead
@@ -64,540 +90,434 @@ export default function HomePage({ onOpenEnquiry }) {
         schema={educationalOrgSchema}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/70 via-white to-surface-subtle pt-12 pb-20 lg:pt-16 lg:pb-28 border-b border-slate-100">
+      {/* 1. IMMERSIVE ART-DIRECTED HERO SECTION (PRESERVED EXACTLY) */}
+      <section className="relative min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-slate-950 text-white">
+        {/* Full-width authentic academy photograph background */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/assets/gallery/v5.png"
+            alt="The Consistent Academy Auditorium and Masterclass"
+            className="w-full h-full object-cover object-center lg:object-right filter brightness-[0.80]"
+            width="4032"
+            height="3024"
+          />
+          {/* Deep-purple / near-black cinematic photographic veil for pristine contrast */}
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/45 to-purple-950/10"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 bg-slate-950/10"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Hero Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 w-full">
+          <div className="max-w-3xl space-y-6">
+            {/* Large, Confident, Expressive Left-Aligned Headline with Natural Line Breaks */}
+            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.08]">
+              Build confidence<br />
+              in the way you<br />
+              communicate.
+            </h1>
+
+            {/* Concise One-Sentence Educational Subtext */}
+            <p className="text-base sm:text-lg md:text-xl text-slate-200/90 font-normal leading-relaxed max-w-2xl pt-1">
+              Structured IELTS preparation, corporate speech mastery, and individualized spoken English instruction in Pune — led by Vidya Wankhade.
+            </p>
+
+            {/* Two Clear Buttons Only: Primary & Secondary */}
+            <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <Link
+                to="/courses"
+                className="bg-brand-purple hover:bg-purple-700 text-white text-base font-semibold px-7 py-3.5 rounded-xl shadow-lg transition-all duration-200 inline-flex items-center justify-center gap-2 group"
+              >
+                <span>Explore Courses</span>
+                <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" />
+              </Link>
+
+              <Link
+                to="/contact"
+                className="border border-white/25 hover:border-white/50 text-white hover:bg-white/10 text-base font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 inline-flex items-center justify-center text-center"
+              >
+                <span>Contact the Academy</span>
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. ACADEMIC LEADERSHIP — CONCISE EDITORIAL FOUNDER INTRODUCTION */}
+      <section className="py-14 sm:py-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {/* Hero Left Copy */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-primary text-xs font-semibold tracking-wide shadow-soft-sm">
-                <Sparkles size={14} className="text-brand-purple" />
-                <span>Empowering Global Communication &amp; Fluency</span>
+            {/* Left Authentic Portrait */}
+            <div className="lg:col-span-5">
+              <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 shadow-sm max-w-md mx-auto lg:max-w-none">
+                <img
+                  src="/assets/gallery/vidya.png"
+                  alt="Vidya Wankhade, Founder and Academic Director of The Consistent Academy"
+                  className="w-full h-80 sm:h-96 lg:h-[420px] object-cover object-top"
+                  loading="lazy"
+                  width="480"
+                  height="520"
+                />
+                <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-baseline justify-between gap-2">
+                  <div>
+                    <h3 className="font-heading font-bold text-base text-slate-950 dark:text-white">
+                      Vidya Wankhade
+                    </h3>
+                    <p className="text-xs text-brand-primary dark:text-purple-400 font-medium">
+                      Founder &amp; Academic Director
+                    </p>
+                  </div>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Pune Campus
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Concise Academic Narrative */}
+            <div className="lg:col-span-7 space-y-5">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-brand-primary dark:text-purple-400">
+                <span className="w-2 h-2 rounded-full bg-brand-primary dark:bg-purple-400" />
+                <span>Academic Leadership</span>
               </div>
 
-              <h1 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.12]">
-                Master English with <br className="hidden sm:inline" />
-                <span className="text-brand-purple">Clarity, Confidence</span> &amp; Consistency.
-              </h1>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-950 dark:text-white tracking-tight leading-snug">
+                Personalized Mentorship Backed by 18+ Years of Classroom Pedagogy.
+              </h2>
 
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Welcome to <strong>The Consistent Academy</strong>. Under the direct mentorship of published author and IELTS Master Trainer <strong>Vidya Wankhade</strong>, we prepare students, executives, and educators to excel in global tests and workplace leadership.
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                Founded by certified IELTS Master Trainer and published author <strong>Vidya Wankhade</strong>, The Consistent Academy operates on a disciplined educational philosophy: communicative ease is an embodied habit built through continuous, deliberate practice and direct feedback.
               </p>
 
-              {/* Verified Trust Badges */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-600 font-medium">
-                <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-soft-sm">
-                  <Award size={15} className="text-brand-primary" />
-                  <span>18+ Years Teaching Pedagogy</span>
+              {/* 3 Key Verified Credentials */}
+              <div className="space-y-2 pt-1 border-t border-slate-100 dark:border-slate-800/80">
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 size={16} className="text-brand-primary dark:text-purple-400 flex-shrink-0" />
+                  <span><strong>Academic Qualifications:</strong> B.Sc, B.Ed, MPM &bull; UGC NET Qualified</span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-soft-sm">
-                  <GraduationCap size={15} className="text-brand-teal" />
-                  <span>IELTS Master Trainer Certified</span>
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 size={16} className="text-brand-primary dark:text-purple-400 flex-shrink-0" />
+                  <span><strong>Global Accreditations:</strong> Certified IELTS Master Trainer (Since 2016), TOEFL &amp; TESOL/TEFL Educator</span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-soft-sm">
-                  <BookOpen size={15} className="text-brand-purple" />
-                  <span>3 Published Educational Books</span>
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 size={16} className="text-brand-primary dark:text-purple-400 flex-shrink-0" />
+                  <span><strong>Published Literature:</strong> Author of 3 educational handbooks including <em>“Cakewalk IELTS”</em> and <em>“101 Management Books”</em></span>
                 </div>
               </div>
 
-              {/* CTAs */}
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
-                <button
-                  type="button"
-                  onClick={() => onOpenEnquiry && onOpenEnquiry()}
-                  className="w-full sm:w-auto bg-brand-primary hover:bg-brand-primary-hover text-white text-base font-semibold px-7 py-3.5 rounded-xl shadow-soft-md hover:shadow-soft-lg transition-all duration-200 flex items-center justify-center gap-2"
-                >
-                  <span>Book Free Consultation</span>
-                  <ArrowRight size={17} />
-                </button>
-
+              {/* Understated Link to Full Biography */}
+              <div className="pt-2">
                 <Link
-                  to="/courses"
-                  className="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 text-base font-semibold px-6 py-3.5 rounded-xl border border-slate-200 shadow-soft-sm transition-all duration-200 flex items-center justify-center gap-2"
+                  to="/about"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-primary dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                 >
-                  <span>View All 13 Courses</span>
-                  <BookOpen size={16} className="text-slate-500" />
+                  <span>Read Full Founder Biography &amp; Academic Background</span>
+                  <ArrowRight size={14} />
                 </Link>
               </div>
 
-              {/* Direct Telephone Contact */}
-              <div className="pt-2 flex items-center justify-center lg:justify-start gap-2 text-xs text-slate-500">
-                <PhoneCall size={14} className="text-brand-primary" />
-                <span>Admissions Helpline:</span>
-                <a href="tel:+917709109830" className="font-bold text-slate-800 hover:text-brand-primary transition-colors">
-                  +91 77091 09830
-                </a>
-                <span>• Pune, Maharashtra</span>
-              </div>
-            </div>
-
-            {/* Hero Right Visuals: Authentic Founder & Academy Showcase */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                {/* Clean Frame Card */}
-                <div className="bg-white rounded-3xl p-3 border border-slate-200/90 shadow-soft-xl">
-                  <div className="relative rounded-2xl overflow-hidden bg-brand-50 aspect-[4/4.5]">
-                    <img
-                      src="/assets/gallery/vidya.png"
-                      alt="Vidya Wankhade - Founder of The Consistent Academy"
-                      className="w-full h-full object-cover object-top"
-                      width="450"
-                      height="500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-purple-300 bg-purple-950/80 px-2 py-0.5 rounded-md inline-block mb-1">
-                        Founder &amp; Master Trainer
-                      </span>
-                      <h2 className="font-heading font-bold text-xl text-white">
-                        Vidya Wankhade
-                      </h2>
-                      <p className="text-xs text-slate-200 mt-0.5">
-                        B.Sc, B.Ed, MPM • UGC NET • IELTS Master Trainer • Author of 3 Books
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Highlights under photo */}
-                  <div className="p-4 grid grid-cols-2 gap-3 mt-1">
-                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-center">
-                      <span className="block font-heading font-extrabold text-xl text-brand-primary">18+ Yrs</span>
-                      <span className="text-[11px] text-slate-500 font-medium">Teaching Career</span>
-                    </div>
-                    <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-center">
-                      <span className="block font-heading font-extrabold text-xl text-brand-teal">Band 7.5+</span>
-                      <span className="text-[11px] text-slate-500 font-medium">Proven First Attempt</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating Verified Badge */}
-                <div className="absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-5 bg-white rounded-2xl p-3.5 border border-slate-200 shadow-soft-lg hidden sm:flex items-center gap-3 max-w-xs">
-                  <div className="w-10 h-10 rounded-xl bg-brand-primary text-white flex items-center justify-center flex-shrink-0">
-                    <Compass size={20} />
-                  </div>
-                  <div>
-                    <span className="font-bold text-xs text-slate-900 block">Personalized Feedback</span>
-                    <span className="text-[11px] text-slate-500">Every writing &amp; speaking task evaluated</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* Trust & Verified Numbers Strip */}
-      <section className="py-10 bg-white border-b border-slate-100">
+      {/* 3. CORE COURSES & CURRICULUM OVERVIEW */}
+      <section className="py-14 sm:py-20 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="p-4">
-              <span className="font-heading font-extrabold text-3xl sm:text-4xl text-brand-primary block">
-                2007
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+            <div className="max-w-2xl space-y-1.5">
+              <span className="text-xs font-semibold uppercase tracking-wider text-brand-primary dark:text-purple-400">
+                Core Curricula
               </span>
-              <span className="text-xs sm:text-sm font-semibold text-slate-700 mt-1 block">
-                Teaching Journey Began
-              </span>
-              <span className="text-[11px] text-slate-500">
-                18+ years continuous mentoring
-              </span>
-            </div>
-
-            <div className="p-4">
-              <span className="font-heading font-extrabold text-3xl sm:text-4xl text-brand-teal block">
-                3 Books
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-slate-700 mt-1 block">
-                Authored by Founder
-              </span>
-              <span className="text-[11px] text-slate-500">
-                Available on Amazon &amp; Flipkart
-              </span>
-            </div>
-
-            <div className="p-4">
-              <span className="font-heading font-extrabold text-3xl sm:text-4xl text-brand-purple block">
-                13 Courses
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-slate-700 mt-1 block">
-                Specialized Programs
-              </span>
-              <span className="text-[11px] text-slate-500">
-                Test prep, corporate &amp; kids
-              </span>
-            </div>
-
-            <div className="p-4">
-              <span className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 block">
-                Pune, MH
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-slate-700 mt-1 block">
-                Academy Headquarters
-              </span>
-              <span className="text-[11px] text-slate-500">
-                Online &amp; offline sessions
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Core Programs Section */}
-      <section className="py-20 bg-surface-subtle">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary bg-brand-100/80 px-3 py-1 rounded-md">
-                Verified Curriculum
-              </span>
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 mt-2">
-                Featured Programs for Every Educational Milestone
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-950 dark:text-white">
+                Focused Programs for Measurable Outcomes
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl">
-                Structured courses with exact modules, transparent fees, and official study materials. No hidden charges or false guarantees.
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Clear module outlines, structured practice drills, and small batches tailored to individual student goals.
               </p>
             </div>
 
             <Link
               to="/courses"
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-primary hover:text-brand-primary-hover self-start md:self-end whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-primary dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 flex-shrink-0"
             >
-              <span>Explore All Courses</span>
-              <ArrowRight size={15} />
+              <span>View All 13 Courses</span>
+              <ArrowRight size={14} />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredCourses.map((course) => (
-              <CourseCard
-                key={course.id}
-                course={course}
-                onEnquire={(title) => onOpenEnquiry && onOpenEnquiry(title)}
-              />
+            {coreCourses.map((c, i) => (
+              <div
+                key={i}
+                className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow space-y-4"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-brand-primary dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
+                      {c.tag}
+                    </span>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                      {c.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-bold text-base sm:text-lg text-slate-950 dark:text-white leading-snug">
+                    {c.title}
+                  </h3>
+
+                  <p className="text-xs text-brand-primary dark:text-purple-400 font-medium">
+                    {c.subtitle}
+                  </p>
+
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {c.description}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                  <Link
+                    to={`/courses/${c.slug}`}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-slate-900 dark:text-white hover:text-brand-primary dark:hover:text-purple-400 transition-colors"
+                  >
+                    <span>Inspect Syllabus</span>
+                    <ChevronRight size={13} />
+                  </Link>
+                </div>
+              </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Link
-              to="/courses"
-              className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-900 font-semibold px-6 py-3 rounded-xl border border-slate-200 shadow-soft-sm transition-all"
-            >
-              <span>View Corporate, Teacher Certification &amp; Kids Courses</span>
-              <ArrowRight size={16} />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Founder Profile & Published Books Section */}
-      <section className="py-20 bg-white border-y border-slate-100" id="founder">
+      {/* 4. TEACHING APPROACH — 3 CONCISE PRINCIPLES */}
+      <section className="py-14 sm:py-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Founder Visual & Books Collage */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="relative rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-soft-md">
-                <img
-                  src="/assets/gallery/vidya.png"
-                  alt="Vidya Wankhade - Lead Trainer"
-                  className="w-full h-80 sm:h-96 object-cover object-top"
-                  loading="lazy"
-                  width="450"
-                  height="384"
-                />
-                <div className="p-5 bg-white border-t border-slate-100">
-                  <h3 className="font-heading font-bold text-xl text-slate-900">
-                    Vidya Wankhade
-                  </h3>
-                  <p className="text-xs text-brand-purple font-semibold mt-0.5">
-                    Founder, Lead Academic Coach &amp; Published Author
-                  </p>
-                  <ul className="mt-3 space-y-1.5 text-xs text-slate-600">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={13} className="text-brand-primary" />
-                      <span>B.Sc, B.Ed, MPM • UGC NET Qualified</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={13} className="text-brand-primary" />
-                      <span>Certified IELTS Master Trainer (Since 2016)</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle2 size={13} className="text-brand-primary" />
-                      <span>Certified TOEFL &amp; PET Trainer • TESOL / TEFL</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Verified Books Preview */}
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
-                  Published Books by Founder
-                </span>
-                <div className="grid grid-cols-3 gap-2">
-                  {founderData.books.map((b, i) => (
-                    <div key={i} className="text-center group">
-                      <img
-                        src={b.coverImage}
-                        alt={b.title}
-                        className="w-full h-24 object-cover rounded-md shadow-sm border border-slate-200 group-hover:scale-105 transition-transform"
-                        loading="lazy"
-                        width="80"
-                        height="96"
-                      />
-                      <span className="text-[10px] text-slate-700 font-medium line-clamp-1 mt-1 block">
-                        {b.title}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Founder Biography & Methodology */}
-            <div className="lg:col-span-7 space-y-5">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-teal bg-teal-50 px-3 py-1 rounded-md border border-teal-200">
-                Academic Leadership
-              </span>
-
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 leading-tight">
-                "Real Language Fluency Comes from Daily Consistency, Not Exam Shortcuts."
-              </h2>
-
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                With over 18 years in English language education, Vidya Wankhade established The Consistent Academy to offer students and professionals a dependable, rigorous, and personalized training ecosystem.
-              </p>
-
-              <div className="space-y-3 pt-2">
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="w-8 h-8 rounded-lg bg-brand-50 text-brand-primary flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Compass size={17} />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-semibold text-sm text-slate-900">
-                      Diagnostics First, Curriculum Second
-                    </h4>
-                    <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                      Every student begins with a baseline assessment. Training is customized to target exact weakness areas across listening, grammar, pronunciation, or writing structure.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="w-8 h-8 rounded-lg bg-teal-50 text-brand-teal flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 size={17} />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-semibold text-sm text-slate-900">
-                      Line-by-Line Writing &amp; Speaking Evaluations
-                    </h4>
-                    <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                      We don't just assign mock tests; we provide line-by-line editorial corrections, lexical replacements, and band score predictions.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="w-8 h-8 rounded-lg bg-purple-50 text-brand-purple flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <BookOpen size={17} />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-semibold text-sm text-slate-900">
-                      Published Methodologies (Cakewalk IELTS)
-                    </h4>
-                    <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                      Study materials are based on published research and proven strategies documented in the widely appreciated guidebook <em>“A Focal Easy Guide Cakewalk IELTS”</em>.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 flex flex-wrap gap-3">
-                <Link
-                  to="/about"
-                  className="bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-colors inline-flex items-center gap-1.5"
-                >
-                  <span>Read Full Founder Biography</span>
-                  <ArrowRight size={15} />
-                </Link>
-
-                <Link
-                  to="/about#books"
-                  className="bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold px-5 py-2.5 rounded-lg border border-slate-200 transition-colors inline-flex items-center gap-1.5"
-                >
-                  <span>Explore 3 Published Books</span>
-                  <ExternalLink size={14} />
-                </Link>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Real Testimonials Section */}
-      <section className="py-20 bg-surface-subtle" id="testimonials">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary bg-brand-100/80 px-3 py-1 rounded-md">
-              Student Journeys
+          
+          <div className="max-w-3xl mb-10 space-y-2">
+            <span className="text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+              Teaching Methodology
             </span>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 mt-2">
-              Authentic First-Attempt Success Stories
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-950 dark:text-white">
+              Deliberate Pedagogy, Not Generic Lecture Notes
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2">
-              Real feedback from students who achieved their target band scores and moved abroad for higher education and professional practice.
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Three core pedagogical standards tested across 18 years of classroom and corporate training.
             </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-2 border-l-2 border-brand-primary dark:border-purple-400 pl-5">
+              <span className="font-heading font-extrabold text-2xl text-brand-primary dark:text-purple-400 block">
+                01
+              </span>
+              <h3 className="font-heading font-bold text-base sm:text-lg text-slate-950 dark:text-white">
+                Diagnostic Evaluation First
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Every candidate begins with a baseline assessment measuring grammar, phonology, lexical variety, and coherence. We do not place students into one-size-fits-all batches.
+              </p>
+            </div>
+
+            <div className="space-y-2 border-l-2 border-teal-600 dark:border-teal-400 pl-5">
+              <span className="font-heading font-extrabold text-2xl text-teal-600 dark:text-teal-400 block">
+                02
+              </span>
+              <h3 className="font-heading font-bold text-base sm:text-lg text-slate-950 dark:text-white">
+                Line-by-Line Direct Feedback
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Writing and speaking submissions receive direct, line-by-line critique from certified faculty with precise grammatical adjustments, lexical upgrades, and Cambridge rubric band metrics.
+              </p>
+            </div>
+
+            <div className="space-y-2 border-l-2 border-purple-600 dark:border-purple-400 pl-5">
+              <span className="font-heading font-extrabold text-2xl text-purple-600 dark:text-purple-400 block">
+                03
+              </span>
+              <h3 className="font-heading font-bold text-base sm:text-lg text-slate-950 dark:text-white">
+                Daily Consistency Over Cramming
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Communicative fluency cannot be acquired through last-minute shortcuts. We enforce daily structured micro-drills and proven reading circle habits documented in <em>Cakewalk IELTS</em>.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. INTERACTIVE DIAGNOSTIC ASSESSMENTS BRIDGE */}
+      <section className="py-12 sm:py-16 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <span className="text-xs font-semibold uppercase tracking-wider text-brand-primary dark:text-purple-400">
+                Online Placement Tools
+              </span>
+              <h2 className="font-heading font-bold text-xl sm:text-2xl text-slate-950 dark:text-white">
+                Evaluate Your Baseline Level Before Enrolling
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Take our complimentary 10-question English diagnostic test or discover your executive communication style archetype with our interactive placement modules.
+              </p>
+              <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-slate-500 dark:text-slate-400">
+                <span>&bull; English Proficiency Diagnostic (10 Qs)</span>
+                <span>&bull; Leadership Style Archetype (5 Scenarios)</span>
+                <span>&bull; Instant Scoring &amp; Level Report</span>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0">
+              <Link
+                to="/tests"
+                className="bg-brand-primary hover:bg-brand-primary-hover dark:bg-purple-600 dark:hover:bg-purple-500 text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-xl shadow-sm transition-colors inline-flex items-center gap-2"
+              >
+                <span>Take Diagnostic Assessment</span>
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. PUBLISHED LITERATURE & REFERENCE BOOKS */}
+      <section className="py-14 sm:py-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+            <div className="space-y-1">
+              <span className="text-xs font-semibold uppercase tracking-wider text-brand-primary dark:text-purple-400">
+                Academic Publications
+              </span>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-950 dark:text-white">
+                Authored Handbooks by Vidya Wankhade
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                Curriculum frameworks and reference literature authored by the founder.
+              </p>
+            </div>
+
+            <Link
+              to="/blog"
+              className="text-xs sm:text-sm font-semibold text-brand-primary dark:text-purple-400 hover:underline inline-flex items-center gap-1"
+            >
+              <span>Explore Blog &amp; Book Insights</span>
+              <ArrowRight size={13} />
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonialsData.map((test) => (
+            {founderData.books.map((b, i) => (
               <div
-                key={test.id}
-                className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-soft-sm flex flex-col justify-between"
-              >
-                <div>
-                  {/* Star Rating */}
-                  <div className="flex items-center gap-1 text-amber-400 mb-4" aria-label="5 out of 5 stars">
-                    {[...Array(test.rating)].map((_, i) => (
-                      <Star key={i} size={16} fill="currentColor" />
-                    ))}
-                  </div>
-
-                  <blockquote className="text-sm sm:text-base text-slate-700 leading-relaxed italic">
-                    "{test.quote}"
-                  </blockquote>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <div>
-                    <h3 className="font-heading font-bold text-base text-slate-900">
-                      {test.name}
-                    </h3>
-                    <p className="text-xs text-slate-500">
-                      {test.role}
-                    </p>
-                  </div>
-
-                  <div className="text-right">
-                    <span className="inline-block bg-brand-50 text-brand-primary text-xs font-extrabold px-2.5 py-1 rounded-md border border-brand-200">
-                      {test.band}
-                    </span>
-                    <span className="block text-[11px] text-slate-500 mt-0.5">
-                      Destination: {test.destination}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Learning In Action Gallery Section */}
-      <section className="py-20 bg-white border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-teal bg-teal-50 px-3 py-1 rounded-md border border-teal-200">
-              Campus &amp; Workshops
-            </span>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 mt-2">
-              Learning in Action
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2">
-              Authentic classroom interactions, public speaking workshops, corporate seminars, and certificate distributions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {galleryData.slice(0, 12).map((item, idx) => (
-              <div
-                key={idx}
-                className="group relative rounded-xl overflow-hidden aspect-square bg-slate-100 border border-slate-200 shadow-soft-sm"
+                key={i}
+                className="p-4 sm:p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 flex items-start gap-4"
               >
                 <img
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  src={b.coverImage}
+                  alt={b.title}
+                  className="w-16 h-22 sm:w-20 sm:h-28 object-cover rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm flex-shrink-0"
                   loading="lazy"
-                  width="200"
-                  height="200"
+                  width="80"
+                  height="112"
                 />
-                <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-2.5">
-                  <span className="text-[11px] text-white font-medium leading-tight">
-                    {item.title}
+                <div className="space-y-1 truncate">
+                  <h3 className="font-heading font-bold text-sm text-slate-950 dark:text-white line-clamp-2 leading-snug">
+                    {b.title}
+                  </h3>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2">
+                    {b.subtitle}
+                  </p>
+                  <span className="text-[10px] text-brand-primary dark:text-purple-400 font-semibold block pt-1">
+                    ISBN: {b.isbn || "Published Handbook"}
                   </span>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 text-center">
-            <span className="text-xs text-slate-500">
-              Photos from Pune classroom sessions, institutional seminars, and corporate workshops.
-            </span>
-          </div>
         </div>
       </section>
 
-      {/* Frequently Asked Questions Section */}
-      <section className="py-20 bg-surface-subtle" id="faqs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary bg-brand-100/80 px-3 py-1 rounded-md">
-              Clear Answers
+      {/* 7. UPGRADED LEARNING ENVIRONMENT GALLERY (STAGGERED CINEMATIC SHOWCASE) */}
+      <LearningEnvironmentGallery />
+
+      {/* 8. CURATED FAQS (4 ESSENTIAL QUESTIONS) */}
+      <section className="py-14 sm:py-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors" id="faqs">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-semibold uppercase tracking-wider text-brand-primary dark:text-purple-400">
+              Essential Information
             </span>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 mt-2">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-950 dark:text-white">
               Frequently Asked Questions
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2">
-              Everything you need to know regarding course formats, fee structures, batch schedules, and trainer credentials.
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              Clear answers regarding batch formats, level evaluation, and course schedules.
             </p>
           </div>
 
-          <FAQAccordion items={faqData} />
+          {/* Clean accessible accordion with the top 4 most practical FAQs */}
+          <FAQAccordion items={faqData.slice(0, 4)} />
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-primary dark:text-purple-400 hover:underline"
+            >
+              <span>Have a specific admission query? Contact our desk &rarr;</span>
+            </Link>
+          </div>
+
         </div>
       </section>
 
-      {/* Final Call to Action */}
-      <section className="py-20 bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900 text-white relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-          <span className="inline-block bg-purple-500/20 border border-purple-400/40 text-purple-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-            Ready to Begin?
+      {/* 9. CONCISE CLOSING ADMISSIONS ACTION */}
+      <section className="py-14 sm:py-16 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <span className="text-xs font-semibold uppercase tracking-wider text-brand-primary dark:text-purple-400">
+            Admissions &amp; Consultation
           </span>
 
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight">
-            Start Your Journey Toward English Fluency Today
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-950 dark:text-white tracking-tight">
+            Begin Your Learning Journey with The Consistent Academy
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Whether preparing for your international IELTS exam, college placements, or executive presence, our structured mentorship will help you succeed.
+          <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Schedule an in-person level evaluation at our Pune center or receive personalized batch timings for IELTS, Spoken English, or Corporate Training.
           </p>
 
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
               type="button"
               onClick={() => onOpenEnquiry && onOpenEnquiry()}
-              className="w-full sm:w-auto bg-brand-purple hover:bg-purple-600 text-white text-base font-semibold px-8 py-3.5 rounded-xl shadow-lg transition-all"
+              className="w-full sm:w-auto bg-brand-primary hover:bg-brand-primary-hover dark:bg-purple-600 text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-xl shadow-sm transition-colors"
             >
-              Enquire Now for Next Batch
+              Request Course Information
             </button>
 
             <Link
               to="/contact"
-              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white text-base font-semibold px-7 py-3.5 rounded-xl border border-white/20 transition-all"
+              className="w-full sm:w-auto bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors"
             >
-              Contact Admissions &amp; Map
+              Admissions Desk &amp; Campus Map
             </Link>
           </div>
 
-          <div className="pt-4 text-xs text-slate-400 flex items-center justify-center gap-4">
-            <span>Direct helpline: +91 77091 09830</span>
-            <span>•</span>
-            <span>theconsistentacademy@gmail.com</span>
-          </div>
+          <p className="pt-2 text-xs text-slate-500 dark:text-slate-400">
+            theconsistentacademy@gmail.com &bull; Pune, Maharashtra
+          </p>
         </div>
       </section>
     </>

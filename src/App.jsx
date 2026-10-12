@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import EnquiryModal from './components/EnquiryModal';
@@ -9,8 +9,9 @@ import AboutPage from './pages/AboutPage';
 import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
 import TestsPage from './pages/TestsPage';
-import ClubPage from './pages/ClubPage';
 import CareersPage from './pages/CareersPage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -45,7 +46,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-surface-subtle selection:bg-brand-500 selection:text-white">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 selection:bg-brand-500 selection:text-white transition-colors duration-200">
       <ScrollToTop />
 
       {/* Persistent Accessible Navigation */}
@@ -58,8 +59,10 @@ export default function App() {
           <Route path="/about" element={<AboutPage onOpenEnquiry={handleOpenEnquiry} />} />
           <Route path="/courses" element={<CoursesPage onOpenEnquiry={handleOpenEnquiry} />} />
           <Route path="/courses/:slug" element={<CourseDetailPage onOpenEnquiry={handleOpenEnquiry} />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/tests" element={<TestsPage onOpenEnquiry={handleOpenEnquiry} />} />
-          <Route path="/club" element={<ClubPage onOpenEnquiry={handleOpenEnquiry} />} />
+          <Route path="/club" element={<Navigate to="/courses" replace />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />

@@ -78,53 +78,51 @@ export default function ContactForm({ prefilledCourse = '' }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-soft-sm">
-      <div className="mb-6">
-        <h3 className="font-heading font-bold text-2xl text-slate-900">
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 sm:p-7 shadow-sm transition-colors">
+      <div className="mb-5">
+        <h3 className="font-heading font-bold text-xl sm:text-2xl text-slate-950 dark:text-white">
           Send an Academic Enquiry
         </h3>
-        <p className="text-sm text-slate-600 mt-1">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
           Have questions regarding IELTS batches, syllabus modules, or personalized batch timings? Fill in the details below.
         </p>
       </div>
 
       {/* Transparent Prototype Notice Banner */}
-      <div className="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3 text-xs text-amber-900">
-        <ShieldAlert size={18} className="text-amber-600 flex-shrink-0 mt-0.5" />
+      <div className="mb-5 p-3.5 sm:p-4 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/80 flex items-start gap-3 text-xs text-amber-900 dark:text-amber-200">
+        <ShieldAlert size={17} className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
         <div className="leading-relaxed">
-          <strong className="font-semibold block text-amber-950">Development Prototype Notice</strong>
-          This enquiry form operates in prototype mode for review. In live production, submissions dispatch directly to the academy admissions desk. For immediate assistance today, contact <a href="tel:+917709109830" className="underline font-semibold">+91 77091 09830</a> or email <a href="mailto:theconsistentacademy@gmail.com" className="underline font-semibold">theconsistentacademy@gmail.com</a>.
+          <strong className="font-semibold block text-amber-950 dark:text-amber-100">Development Prototype Notice</strong>
+          This enquiry form operates in prototype mode for review. In live production, submissions dispatch directly to the academy admissions desk. For immediate assistance today, email <a href="mailto:theconsistentacademy@gmail.com" className="underline font-semibold">theconsistentacademy@gmail.com</a>.
         </div>
       </div>
 
       {submittedState === 'prototype-tested' ? (
-        <div className="p-6 rounded-xl bg-purple-50 border border-purple-200 text-center space-y-4">
-          <div className="w-12 h-12 bg-purple-100 text-brand-primary rounded-full flex items-center justify-center mx-auto">
-            <CheckCircle2 size={28} />
+        <div className="p-6 sm:p-8 rounded-xl bg-purple-50/70 dark:bg-slate-800/90 border border-purple-200 dark:border-purple-800 text-center space-y-4 my-2">
+          <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 text-brand-primary dark:text-purple-400 rounded-full flex items-center justify-center mx-auto">
+            <CheckCircle2 size={26} />
           </div>
           <div>
-            <h4 className="font-heading font-bold text-lg text-slate-900">
+            <h4 className="font-heading font-bold text-base sm:text-lg text-slate-950 dark:text-white">
               Form Validation Passed (Prototype Verification)
             </h4>
-            <p className="text-xs text-slate-600 mt-1 max-w-md mx-auto">
+            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 max-w-md mx-auto">
               Your inputs for <strong>{formData.name || 'Student'}</strong> regarding{' '}
               <strong>{formData.course || 'General Enquiry'}</strong> have been validated successfully.
             </p>
           </div>
           <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3">
             <a
-              href={`https://wa.me/917709109830?text=Hi%20The%20Consistent%20Academy,%20I%20am%20${encodeURIComponent(formData.name)}.%20I%20am%20interested%20in%20${encodeURIComponent(formData.course || 'your courses')}.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition-colors"
+              href={`mailto:theconsistentacademy@gmail.com?subject=${encodeURIComponent(`Course Enquiry: ${formData.course || 'General Admissions'}`)}&body=${encodeURIComponent(`Hello Admissions Desk,\n\nName: ${formData.name}\nEmail: ${formData.email}\nSelected Course: ${formData.course}\nPreferred Batch: ${formData.timing}\nMessage: ${formData.message}\n`)}`}
+              className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary-hover dark:bg-purple-600 dark:hover:bg-purple-700 text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition-colors"
             >
-              <MessageSquare size={14} />
-              <span>Forward directly on WhatsApp</span>
+              <Mail size={14} />
+              <span>Email Admissions Directly</span>
             </a>
             <button
               type="button"
               onClick={resetForm}
-              className="text-xs font-semibold text-slate-600 hover:text-slate-900 px-4 py-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
+              className="text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
             >
               Reset Form
             </button>
@@ -135,7 +133,7 @@ export default function ContactForm({ prefilledCourse = '' }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Full Name */}
             <div>
-              <label htmlFor="enquiry-name" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="enquiry-name" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Full Name <span className="text-rose-500">*</span>
               </label>
               <input
@@ -146,8 +144,8 @@ export default function ContactForm({ prefilledCourse = '' }) {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="e.g. Rahul Sharma"
-                className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white focus:outline-none transition-colors ${
-                  errors.name ? 'border-rose-400 focus:ring-2 focus:ring-rose-200' : 'border-slate-300 focus:border-brand-purple focus:ring-2 focus:ring-brand-100'
+                className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white dark:bg-slate-800 dark:text-white focus:outline-none transition-colors ${
+                  errors.name ? 'border-rose-400 focus:ring-2 focus:ring-rose-200' : 'border-slate-300 dark:border-slate-700 focus:border-brand-primary dark:focus:border-purple-500'
                 }`}
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? 'name-error' : undefined}
@@ -162,7 +160,7 @@ export default function ContactForm({ prefilledCourse = '' }) {
 
             {/* Email Address */}
             <div>
-              <label htmlFor="enquiry-email" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="enquiry-email" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Email Address <span className="text-rose-500">*</span>
               </label>
               <input
@@ -173,8 +171,8 @@ export default function ContactForm({ prefilledCourse = '' }) {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="e.g. rahul@example.com"
-                className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white focus:outline-none transition-colors ${
-                  errors.email ? 'border-rose-400 focus:ring-2 focus:ring-rose-200' : 'border-slate-300 focus:border-brand-purple focus:ring-2 focus:ring-brand-100'
+                className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white dark:bg-slate-800 dark:text-white focus:outline-none transition-colors ${
+                  errors.email ? 'border-rose-400 focus:ring-2 focus:ring-rose-200' : 'border-slate-300 dark:border-slate-700 focus:border-brand-primary dark:focus:border-purple-500'
                 }`}
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
@@ -191,7 +189,7 @@ export default function ContactForm({ prefilledCourse = '' }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Phone Number */}
             <div>
-              <label htmlFor="enquiry-phone" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="enquiry-phone" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Phone Number <span className="text-rose-500">*</span>
               </label>
               <input
@@ -202,8 +200,8 @@ export default function ContactForm({ prefilledCourse = '' }) {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+91 98765 43210"
-                className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white focus:outline-none transition-colors ${
-                  errors.phone ? 'border-rose-400 focus:ring-2 focus:ring-rose-200' : 'border-slate-300 focus:border-brand-purple focus:ring-2 focus:ring-brand-100'
+                className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white dark:bg-slate-800 dark:text-white focus:outline-none transition-colors ${
+                  errors.phone ? 'border-rose-400 focus:ring-2 focus:ring-rose-200' : 'border-slate-300 dark:border-slate-700 focus:border-brand-primary dark:focus:border-purple-500'
                 }`}
                 aria-invalid={!!errors.phone}
                 aria-describedby={errors.phone ? 'phone-error' : undefined}
@@ -218,7 +216,7 @@ export default function ContactForm({ prefilledCourse = '' }) {
 
             {/* Course Program Selection */}
             <div>
-              <label htmlFor="enquiry-course" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="enquiry-course" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Program of Interest
               </label>
               <select
@@ -226,7 +224,7 @@ export default function ContactForm({ prefilledCourse = '' }) {
                 name="course"
                 value={formData.course}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-brand-purple focus:ring-2 focus:ring-brand-100 transition-colors"
+                className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white focus:outline-none focus:border-brand-primary dark:focus:border-purple-500 transition-colors"
               >
                 <option value="">Select a program (optional)</option>
                 {allCourses.map((c, i) => (
@@ -240,7 +238,7 @@ export default function ContactForm({ prefilledCourse = '' }) {
 
           {/* Message / Requirements */}
           <div>
-            <label htmlFor="enquiry-message" className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="enquiry-message" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
               Your Questions or Learning Goals
             </label>
             <textarea
@@ -250,7 +248,7 @@ export default function ContactForm({ prefilledCourse = '' }) {
               value={formData.message}
               onChange={handleChange}
               placeholder="Tell us about your target exam date, current band score, or specific areas you want to improve..."
-              className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-brand-purple focus:ring-2 focus:ring-brand-100 transition-colors"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white focus:outline-none focus:border-brand-primary dark:focus:border-purple-500 transition-colors"
             ></textarea>
           </div>
 
@@ -262,10 +260,10 @@ export default function ContactForm({ prefilledCourse = '' }) {
                 name="agreePrivacy"
                 checked={formData.agreePrivacy}
                 onChange={handleChange}
-                className="mt-0.5 rounded text-brand-primary focus:ring-brand-accent h-4 w-4 border-slate-300"
+                className="mt-0.5 rounded text-brand-primary focus:ring-brand-primary h-4 w-4 border-slate-300 dark:border-slate-700 dark:bg-slate-800"
               />
-              <span className="text-xs text-slate-600 leading-normal">
-                I agree to be contacted by The Consistent Academy admissions team regarding my learning inquiry. No spam.
+              <span className="text-xs text-slate-600 dark:text-slate-400 leading-normal">
+                I agree to be contacted by The Consistent Academy admissions team regarding my learning inquiry.
               </span>
             </label>
             {errors.agreePrivacy && (
@@ -280,16 +278,16 @@ export default function ContactForm({ prefilledCourse = '' }) {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
             <button
               type="submit"
-              className="w-full sm:w-auto bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-semibold px-6 py-3 rounded-lg shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-brand-primary hover:bg-brand-primary-hover dark:bg-purple-600 dark:hover:bg-purple-700 text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2"
             >
               <span>Submit Academic Enquiry</span>
-              <Send size={15} />
+              <Send size={14} />
             </button>
 
-            <span className="text-xs text-slate-500">
-              Or call directly:{' '}
-              <a href="tel:+917709109830" className="text-brand-primary font-bold hover:underline">
-                +91 77091 09830
+            <span className="text-xs text-slate-500 dark:text-slate-400">
+              Admissions Desk:{' '}
+              <a href="mailto:theconsistentacademy@gmail.com" className="text-brand-primary dark:text-purple-400 font-semibold hover:underline">
+                theconsistentacademy@gmail.com
               </a>
             </span>
           </div>
